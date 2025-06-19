@@ -3,7 +3,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
 
-const userModule = require("./modules/user");
+const authModule = require("./auth");
 
 const app = express();
 
@@ -13,10 +13,13 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(express.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-app.use("/api/user", userModule);
+app.use(
+  authModule({
+    jwtSecret: process.env.JWT_SECRET,
+  })
+);
 
 module.exports = app;

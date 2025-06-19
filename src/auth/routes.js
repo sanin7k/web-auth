@@ -6,8 +6,8 @@ const {
   profile,
   getAllUsers,
 } = require("./controller");
-const auth = require("../../middleware/auth");
-const isAdmin = require("../../middleware/isAdmin");
+const auth = require("./middleware/auth");
+const isAdmin = require("./middleware/isAdmin");
 
 const router = express.Router();
 
