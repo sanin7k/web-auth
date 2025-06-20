@@ -9,8 +9,7 @@ const {
   getAllUsers,
   verifyEmail,
 } = require("./controller");
-const auth = require("./middleware/auth");
-const isAdmin = require("./middleware/isAdmin");
+const { auth, isAdmin } = require("./middleware");
 
 const router = express.Router();
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const routes = require("./routes");
+const { auth, isAdmin } = require("./middleware");
 
 module.exports = function initAuthModule({ jwtSecret }) {
   if (jwtSecret) {
@@ -14,6 +15,6 @@ module.exports = function initAuthModule({ jwtSecret }) {
 };
 
 module.exports.middleware = {
-  auth: require("./middleware/auth"),
-  isAdmin: require("./middleware/isAdmin"),
+  auth: auth,
+  isAdmin: isAdmin,
 };

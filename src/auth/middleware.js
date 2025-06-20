@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
+exports.auth = (req, res, next) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).send({ error: "Not authorized" });
 
@@ -11,4 +11,11 @@ module.exports = (req, res, next) => {
   } catch (err) {
     res.status(401).send({ error: "Invalid token" });
   }
+};
+
+exports.isAdmin = (req, res, next) => {
+  if (req.user?.role !== "admin") {
+    return res.status(403).send({ error: "Access denied: Admins only" });
+  }
+  next();
 };
